@@ -5,20 +5,29 @@
 #include<stdio.h>
 //#include"Arduino.h"
 
-//enum allPins{
-    int ultrasonicPins[]={5,6,7,8};
-    int lightPins[]={1,2,3,4};
-    int moisturePins[]={0};
-    int ardu2arduPins[]={0};
-//};
+struct Pins{
+    const int ultrasonicPins[4];
+    const int lightPins[4][2];
+    const int moisturePins[2];
+    const int ardu2arduPins[2];
+    int *pval;
+
+    struct Values{
+        float lightPinVals[4][2];
+        float moisturePinVals[2];
+        float ultrasonicPinVals[4];
+    };
+};
 
 
-int readAnalogPins(int pins[],int n)
+//return pointer to array
+float * readAnalogPins(const int *pins,int n)
 {
-    printf("%d",sizeof(pins)/sizeof(int));
-    for(int i=0;i<sizeof(pins)/sizeof(int);i++)
+    
+    for(int i=0;i<n;i++)
     {
         printf("pins: %d\n",pins[i]);
+        pval=valueOfPins;
     };
 };
 
@@ -45,10 +54,12 @@ int main(int argc, char *argv[])
 	/*
 	* Photovoltaic
 	*/
-    int *p=lightPins;
-    printf("%d\n",sizeof(lightPins)/sizeof(int));
+    int n = sizeof(lightPins)/sizeof(lightPins[0]); //get the size of the array
+    printf("size: %d\n",n); //check
 
-    readAnalogPins(lightPins,4);//
+    readAnalogPins(lightPins,n,lightPinVals);// read the all the analog pins inside the array
+
+
 
 	/*
 	* Moisture
