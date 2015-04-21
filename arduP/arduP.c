@@ -12,13 +12,13 @@ struct Pins{
     const int ardu2arduPins[2];
     int *pval;
 
-    struct Values{
-        float lightPinVals[4][2];
-        float moisturePinVals[2];
-        float ultrasonicPinVals[4];
-    };
 };
 
+struct Values{
+    float lightPinVals[4][2];
+    float moisturePinVals[2];
+    float ultrasonicPinVals[4];
+};
 
 //return pointer to array
 float * readAnalogPins(const int *pins,int n)
@@ -31,7 +31,7 @@ float * readAnalogPins(const int *pins,int n)
     };
 };
 
-//int getNumerofElements(int array[])
+//int getNumberofElements(int array[])
 //{
 //    int n=0; //indices
 //    int i=0; //counter
