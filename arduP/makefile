@@ -22,7 +22,7 @@ USER_LIB_PATH := $(realpath $(PROJECT_DIR)/lib)
 ### It must be set to the board you are currently using. (i.e uno, mega, etc.)
 ### For the Arduino Uno, only BOARD_TAG is mandatory and BOARD_SUB can be equal to anything
 ### For the Arduino Mega2560, BOARD_SUB is also needed
-BOARD_TAG = uno
+BOARD_TAG = mega
 BOARD_SUB = atmega2560
 ### MONITOR_BAUDRATE
 ### It must be set to Serial baudrate value you are using.
@@ -44,9 +44,12 @@ CXXFLAGS = -Wall #-Wextra #-pedantic
 ifeq "$(AVR_GCC_VERSION)" "1"
 	CXXFLAGS += -fdiagnostics-color
 endif
+### ARDUINO_PORT
+### Find the port to connect
+ARDUINO_PORT = /dev/ttyACM0
 ### MONITOR_PORT
 ### The port your board is connected to. Using an '*' tries all the ports and finds the right one.
-MONITOR_PORT = /dev/tty.usbmodem*
+MONITOR_PORT = /dev/ttyACM0
 ### don't touch this
 CURRENT_DIR = $(shell basename $(CURDIR))
 ### OBJDIR
